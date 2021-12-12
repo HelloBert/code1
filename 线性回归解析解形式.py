@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 
 # 手动创建数据
 # x是一百行一列
+# 测试修改
 X = np.random.rand(100, 1)
 
 # y是100行1列，这里是真实的数据y_hat + error
