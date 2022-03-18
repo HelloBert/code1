@@ -1,7 +1,49 @@
 import jieba
+import numpy as np
 from sklearn.feature_extraction import DictVectorizer
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.preprocessing import MinMaxScaler
+from sklearn.preprocessing import StandardScaler
+from sklearn.impute import SimpleImputer
+from sklearn.feature_selection import VarianceThreshold
+from sklearn.decomposition import PCA
+
+def pca():
+    # 主成分分析进行降维
+    pca = PCA(n_components=0.95)
+    data = pca.fit_transform([[80, 79, 1, 14], [80, 111, 33, 754], [80, 234, 11, 23]])
+    print(data)
+
+
+# sklearn特征选择,删除低方差的特征
+def var():
+    va = VarianceThreshold(threshold=0)
+    data = va.fit_transform([[80, 79, 1, 14], [80, 111, 33, 754], [80, 234, 11, 23]])
+    print(data)
+
+
+
+# sklearn对缺失值处理
+def im():
+    # strategy='mean'按平均值填补，按照列计算
+    imputer = SimpleImputer(missing_values=np.nan, strategy='mean')
+    data = imputer.fit_transform([[89, 79, np.nan, 14], [78, 111, 33, np.nan], [82, 234, np.nan, 23]])
+    print(data)
+
+# 标准归一化
+def standscaler():
+    ss = StandardScaler()
+    data = ss.fit_transform([[89, 79, 1, 14], [78, 111, 33, 754], [82, 234, 11, 23]])
+    print(data)
+
+# 数据归一化
+def Maxminscale():
+    # feature_range指定2-3之间的范围
+    mm = MinMaxScaler(feature_range=(2, 3))
+    data = mm.fit_transform([[89, 79, 1, 14], [78, 111, 33, 754], [82, 234, 11, 23]])
+    print(data)
+
 
 # 字典特征抽取
 def dictvec():
@@ -79,8 +121,13 @@ def tfidfvec():
 
 
 if __name__ == "__main__":
-    dictvec()
+    #dictvec()
     print("------------------------")
-    countvec()
+    #countvec()
     #hanzivec()
-    tfidfvec()
+    #tfidfvec()
+    #Maxminscale()
+    #standscaler()
+    # im()
+    # var()
+    pca()
