@@ -2,6 +2,8 @@ from sklearn.datasets import fetch_20newsgroups
 from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.naive_bayes import MultinomialNB
+from sklearn.metrics import classification_report
+
 
 
 
@@ -31,6 +33,7 @@ def naviebayes():
 
     print("预测得到的分类是：", y_predict)
     print("准确率是：",mlt.score(X_test, y_test))
+    print("每个类别的精准率和召回率：", classification_report(y_test, y_predict, target_names=news.target_names))
 
 
     return None

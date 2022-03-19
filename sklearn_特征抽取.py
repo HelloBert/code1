@@ -11,6 +11,7 @@ from sklearn.decomposition import PCA
 
 def pca():
     # 主成分分析进行降维
+    # 信息的保留量90%-100%之间
     pca = PCA(n_components=0.95)
     data = pca.fit_transform([[80, 79, 1, 14], [80, 111, 33, 754], [80, 234, 11, 23]])
     print(data)
